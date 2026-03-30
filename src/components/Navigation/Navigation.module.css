@@ -1,0 +1,56 @@
+/* Navigation.module.css */
+.navbar {
+	display: flex;
+	align-items: center;
+	gap: 130px;
+    position: relative;
+    height: 96px;
+}
+
+.logo {
+	height: 28px;
+	width: 218px;
+}
+
+/* Links wrapper positioned within the 96px navbar: top 38px, height 32px */
+.links {
+	height: 32px;
+    display: flex;
+	gap: 40px;
+}
+
+.link{
+    height: 20px;
+}
+
+.link,
+.activeLink {
+	font-weight: normal;
+	text-decoration: none;
+	color: var(--text);
+	position: relative;
+	display: inline-block;
+	line-height: 20px;
+	height: 32px;
+    margin-top: 6px;;
+	padding: 0 2px;
+	background: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: color 0.2s;
+}
+
+  
+.activeDot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--accent);
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: calc(50% + 4px); /* 4px gap below text center */
+	display: block;
+	pointer-events: none;
+}

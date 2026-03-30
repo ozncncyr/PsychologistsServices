@@ -24,7 +24,7 @@ body {
   color: var(--text);
   font-weight: 400;
   font-style: normal;
-  width: 100%;
+  padding: 24px 128px;
   height: 100vh;
   margin: 0;
   background-color: var(--bg);

@@ -1,0 +1,41 @@
+/* UserPanel.module.css */
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.loginButton {
+  padding: 14px 39px;
+  border: 1px solid rgba(25, 26, 21, 0.2);
+  border-radius: 30px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -1%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.loginButton:hover {
+  background: #f5f5f5;
+}
+
+.registrationButton {
+  padding: 14px 40px;
+  border: none;
+  border-radius: 30px;
+  background: #3fcc8e;
+  color: var(--bg);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -1%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.registrationButton:hover {
+  background: var(--accent-heavy);
+}

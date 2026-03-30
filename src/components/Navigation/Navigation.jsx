@@ -1,25 +1,32 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Logo.png";
+import css from "./Navigation.module.css";
 
 const Navigation = () => {
   return (
-    <nav style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+    <nav className={css.navbar}>
       <NavLink to="/">
-        <img src={logo} alt="Logo" style={{ height: 40 }} />
+        <img src={logo} alt="Logo" className={css.logo} />
       </NavLink>
-      <NavLink
-        to="/"
-        style={({ isActive }) => ({ fontWeight: isActive ? "bold" : "normal" })}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/psychologists"
-        style={({ isActive }) => ({ fontWeight: isActive ? "bold" : "normal" })}
-      >
-        Psychologists
-      </NavLink>
+      <div className={css.links}>
+        <NavLink to="/">
+          {({ isActive }) => (
+            <span className={isActive ? css.activeLink : css.link}>
+              Home
+              {isActive && <span className={css.activeDot}></span>}
+            </span>
+          )}
+        </NavLink>
+        <NavLink to="/psychologists">
+          {({ isActive }) => (
+            <span className={isActive ? css.activeLink : css.link}>
+              Psychologists
+              {isActive && <span className={css.activeDot}></span>}
+            </span>
+          )}
+        </NavLink>
+      </div>
     </nav>
   );
 };
