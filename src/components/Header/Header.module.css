@@ -5,12 +5,19 @@
   align-items: center;
   height: 96px;
   background: linear-gradient(90deg, #fff 60%, #f7faf9 100%);
-  border-bottom: 1px solid rgba(25, 26, 21, 0.1);
 }
 
 .leftContent {
   display: flex;
   align-items: center;
   gap: 48px;
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  border-bottom: 1px solid rgba(25, 26, 21, 0.1); /* now inside container */
 }
 

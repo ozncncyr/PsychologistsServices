@@ -1,28 +1,28 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Logo.png";
-import css from "./Navigation.module.css";
+import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   return (
-    <nav className={css.navbar}>
+    <nav className={styles.navbar}>
       <NavLink to="/">
-        <img src={logo} alt="Logo" className={css.logo} />
+        <img src={logo} alt="Logo" className={styles.logo} />
       </NavLink>
-      <div className={css.links}>
+      <div className={styles.links}>
         <NavLink to="/">
           {({ isActive }) => (
-            <span className={isActive ? css.activeLink : css.link}>
+            <span className={isActive ? styles.activeLink : styles.link}>
               Home
-              {isActive && <span className={css.activeDot}></span>}
+              {isActive && <span className={styles.activeDot}></span>}
             </span>
           )}
         </NavLink>
         <NavLink to="/psychologists">
           {({ isActive }) => (
-            <span className={isActive ? css.activeLink : css.link}>
+            <span className={isActive ? styles.activeLink : styles.link}>
               Psychologists
-              {isActive && <span className={css.activeDot}></span>}
+              {isActive && <span className={styles.activeDot}></span>}
             </span>
           )}
         </NavLink>

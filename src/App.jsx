@@ -4,7 +4,9 @@ import Header from "./components/Header/Header";
 import React, { Suspense, lazy } from "react";
 
 const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
-// const PsychologistsPage = lazy(() => import("./pages/PsychologistsPage")); // İleride eklenebilir
+const PsychologistsPage = lazy(
+  () => import("./pages/PsychologistsPage/PsychologistsPage"),
+);
 
 function App() {
   return (
@@ -13,7 +15,7 @@ function App() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {/* <Route path="/psychologists" element={<PsychologistsPage />} /> */}
+          <Route path="/psychologists" element={<PsychologistsPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

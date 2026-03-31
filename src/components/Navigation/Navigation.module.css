@@ -41,6 +41,11 @@
 	transition: color 0.2s;
 }
 
+.link:hover,
+.activeLink:hover {
+  color: var(--accent);
+}
+
   
 .activeDot {
 	width: 8px;
@@ -50,7 +55,7 @@
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	top: calc(50% + 4px); /* 4px gap below text center */
+	top: calc(50% + 8px); /* 4px gap below text center */
 	display: block;
 	pointer-events: none;
 }

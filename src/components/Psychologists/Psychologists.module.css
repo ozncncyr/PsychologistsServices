@@ -1,0 +1,13 @@
+.root {
+  display: block;
+}
+
+.title {
+  font-size: 28px;
+  margin: 0 0 8px 0;
+}
+
+.lead {
+  color: #666;
+  margin: 0 0 24px 0;
+}
