@@ -1,4 +1,4 @@
-import { start, success, failure, logout } from "./authSlice";
+import { start, success, failure, logout, setRefreshing } from "./authSlice";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -70,5 +70,27 @@ export const performLogout = () => async (dispatch) => {
     dispatch(logout());
   } catch (e) {
     dispatch(failure(e.message));
+  }
+};
+
+export const restoreUser = (firebaseUser) => async (dispatch) => {
+  try {
+    if (firebaseUser) {
+      const token = await firebaseUser.getIdToken();
+      const safeUser = {
+        uid: firebaseUser.uid,
+        email: firebaseUser.email,
+        displayName: firebaseUser.displayName || null,
+        photoURL: firebaseUser.photoURL || null,
+      };
+      dispatch(success({ user: safeUser, token }));
+    } else {
+      dispatch(logout());
+    }
+  } catch (e) {
+    console.error("restoreUser error", e);
+    dispatch(logout());
+  } finally {
+    dispatch(setRefreshing(false));
   }
 };

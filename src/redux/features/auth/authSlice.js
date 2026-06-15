@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   token: null,
-  status: "idle",
+  status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
+  isRefreshing: true,
   error: null,
 };
 
@@ -29,9 +30,14 @@ const authSlice = createSlice({
       state.token = null;
       state.status = "idle";
       state.error = null;
+      state.isRefreshing = false;
+    },
+    setRefreshing(state, action) {
+      state.isRefreshing = action.payload;
     },
   },
 });
 
-export const { start, success, failure, logout } = authSlice.actions;
+export const { start, success, failure, logout, setRefreshing } =
+  authSlice.actions;
 export default authSlice.reducer;
