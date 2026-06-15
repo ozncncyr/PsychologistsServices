@@ -3,6 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Modal from "../Modal/Modal";
 import styles from "./RegisterForm.module.css";
+import { useDispatch } from "react-redux";
+import {
+  registerAuth,
+  createUserProfile,
+} from "../../redux/features/auth/authThunks";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -11,6 +16,8 @@ const RegisterSchema = Yup.object().shape({
 });
 
 export default function RegisterForm({ onClose }) {
+  const dispatch = useDispatch();
+
   return (
     <Modal onClose={onClose}>
       <div className={styles.wrapper}>
@@ -32,12 +39,49 @@ export default function RegisterForm({ onClose }) {
             <Formik
               initialValues={{ name: "", email: "", password: "" }}
               validationSchema={RegisterSchema}
-              onSubmit={(values) => {
-                console.log("register", values);
+              onSubmit={async (
+                values,
+                { setSubmitting, setFieldError, setStatus },
+              ) => {
+                try {
+                  setStatus(null);
+                  const safeUser = await dispatch(
+                    registerAuth(values.email, values.password),
+                  );
+                  // create RTDB profile (separate)
+                  try {
+                    await dispatch(
+                      createUserProfile(
+                        values.name,
+                        safeUser.uid,
+                        safeUser.email,
+                      ),
+                    );
+                  } catch (e) {
+                    console.error(
+                      "Failed to create profile after registration",
+                      e,
+                    );
+                  }
+                  setSubmitting(false);
+                  onClose?.();
+                } catch (e) {
+                  setSubmitting(false);
+                  const code = e?.code || e?.message || String(e);
+                  if (
+                    code.includes("email-already-in-use") ||
+                    code.includes("already")
+                  ) {
+                    setFieldError("email", "This email is already in use.");
+                  } else {
+                    setStatus(code);
+                  }
+                }
               }}
             >
-              {({ errors, touched }) => (
+              {({ errors, touched, isSubmitting, status }) => (
                 <Form className={styles.form}>
+                  {status && <div className={styles.error}>{status}</div>}
                   <div className={styles.inputList}>
                     <div>
                       <Field
@@ -80,24 +124,19 @@ export default function RegisterForm({ onClose }) {
                       />
                     </div>
                   </div>
+
+                  <div className={styles.action}>
+                    <button
+                      type="submit"
+                      className={styles.primary}
+                      disabled={isSubmitting}
+                    >
+                      Sign Up
+                    </button>
+                  </div>
                 </Form>
               )}
             </Formik>
-          </div>
-
-          <div className={styles.action}>
-            <button
-              className={styles.primary}
-              onClick={() =>
-                document
-                  .querySelector("form")
-                  ?.dispatchEvent(
-                    new Event("submit", { cancelable: true, bubbles: true }),
-                  )
-              }
-            >
-              Sign Up
-            </button>
           </div>
         </div>
       </div>

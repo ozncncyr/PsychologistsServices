@@ -39,3 +39,37 @@
 .registrationButton:hover {
   background: var(--accent-heavy);
 }
+
+.loggedIn{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.userInfo{
+  display:flex;
+  align-items:center;
+  gap:14px; /* avatar to name */
+  margin-right:28px; /* name to button */
+}
+
+.avatar{
+  width:40px;
+  height:40px;
+  background:var(--accent);
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.avatar svg{ display:block; }
+
+.name{
+  font-weight:500;
+  font-size:16px;
+  line-height:20px;
+  letter-spacing:-0.01em;
+  color:var(--text);
+}
+

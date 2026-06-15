@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Modal from "../Modal/Modal";
 import styles from "./LogInForm.module.css";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/features/auth/authThunks";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -10,6 +12,8 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function LogInForm({ onClose }) {
+  const dispatch = useDispatch();
+
   return (
     <Modal onClose={onClose}>
       <div className={styles.wrapper}>
@@ -30,12 +34,34 @@ export default function LogInForm({ onClose }) {
             <Formik
               initialValues={{ email: "", password: "" }}
               validationSchema={LoginSchema}
-              onSubmit={(values) => {
-                console.log("login", values);
+              onSubmit={async (
+                values,
+                { setSubmitting, setFieldError, setStatus },
+              ) => {
+                try {
+                  setStatus(null);
+                  await dispatch(login(values.email, values.password));
+                  setSubmitting(false);
+                  onClose?.();
+                } catch (e) {
+                  setSubmitting(false);
+                  const code = e?.code || e?.message || String(e);
+                  if (
+                    code.includes("invalid-password") ||
+                    code.includes("wrong-password")
+                  ) {
+                    setFieldError("password", "Incorrect password.");
+                  } else if (code.includes("user-not-found")) {
+                    setFieldError("email", "No user found with this email.");
+                  } else {
+                    setStatus(code);
+                  }
+                }
               }}
             >
-              {({ errors, touched }) => (
+              {({ errors, touched, isSubmitting, status }) => (
                 <Form className={styles.form}>
+                  {status && <div className={styles.error}>{status}</div>}
                   <div className={styles.inputList}>
                     <div>
                       <Field
@@ -65,24 +91,19 @@ export default function LogInForm({ onClose }) {
                       />
                     </div>
                   </div>
+
+                  <div className={styles.action}>
+                    <button
+                      type="submit"
+                      className={styles.primary}
+                      disabled={isSubmitting}
+                    >
+                      Log in
+                    </button>
+                  </div>
                 </Form>
               )}
             </Formik>
-          </div>
-
-          <div className={styles.action}>
-            <button
-              className={styles.primary}
-              onClick={() =>
-                document
-                  .querySelector("form")
-                  ?.dispatchEvent(
-                    new Event("submit", { cancelable: true, bubbles: true }),
-                  )
-              }
-            >
-              Log in
-            </button>
           </div>
         </div>
       </div>

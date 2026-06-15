@@ -19,6 +19,10 @@
 	gap: 40px;
 }
 
+.favoritesLink{
+  margin-left: auto;
+}
+
 .link{
     height: 20px;
 }

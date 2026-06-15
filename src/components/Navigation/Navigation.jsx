@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import logo from "../../assets/Logo.png";
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
+  const user = useSelector((state) => state.auth.user);
   return (
     <nav className={styles.navbar}>
       <NavLink to="/">
@@ -26,6 +28,16 @@ const Navigation = () => {
             </span>
           )}
         </NavLink>
+        {user && (
+          <NavLink to="/favorites" className={styles.favoritesLink}>
+            {({ isActive }) => (
+              <span className={isActive ? styles.activeLink : styles.link}>
+                Favorites
+                {isActive && <span className={styles.activeDot}></span>}
+              </span>
+            )}
+          </NavLink>
+        )}
       </div>
     </nav>
   );
