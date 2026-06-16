@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "../Container/Container";
 import styles from "./Home.module.css";
 import heroImg from "../../assets/hero_img.png";
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <section className={styles.hero}>
       <div className={styles.left}>
@@ -15,7 +18,10 @@ const Home = () => {
           We help you to reveal your potential, overcome challenges and find a
           guide in your own life with the help of our experienced psychologists.
         </p>
-        <button className={styles.heroBtn}>
+        <button
+          className={styles.heroBtn}
+          onClick={() => navigate("/psychologists")}
+        >
           Get started <span style={{ fontSize: "22px" }}>🡥</span>
         </button>
       </div>

@@ -4,10 +4,7 @@ import * as Yup from "yup";
 import Modal from "../Modal/Modal";
 import styles from "./RegisterForm.module.css";
 import { useDispatch } from "react-redux";
-import {
-  registerAuth,
-  createUserProfile,
-} from "../../redux/features/auth/authThunks";
+import { registerAuth } from "../../redux/features/auth/authThunks";
 
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -45,24 +42,9 @@ export default function RegisterForm({ onClose }) {
               ) => {
                 try {
                   setStatus(null);
-                  const safeUser = await dispatch(
-                    registerAuth(values.email, values.password),
+                  await dispatch(
+                    registerAuth(values.name, values.email, values.password),
                   );
-                  // create RTDB profile (separate)
-                  try {
-                    await dispatch(
-                      createUserProfile(
-                        values.name,
-                        safeUser.uid,
-                        safeUser.email,
-                      ),
-                    );
-                  } catch (e) {
-                    console.error(
-                      "Failed to create profile after registration",
-                      e,
-                    );
-                  }
                   setSubmitting(false);
                   onClose?.();
                 } catch (e) {

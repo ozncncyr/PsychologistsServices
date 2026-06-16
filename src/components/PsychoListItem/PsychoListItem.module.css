@@ -1,3 +1,278 @@
 .container {
-  /* CSS stilleri buraya gelecek */
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  max-width: 1184px; /* Adjust as needed for grid */
+  background: rgba(251, 251, 251, 1);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* Existing media query is modified or removed based on the new grid layout */
+
+.avatarWrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  padding: 12px;
+  border: 2px solid rgba(52, 112, 255, 0.2);
+  border-radius: 30px;
+  box-sizing: border-box;
+}
+
+.avatarImage {
+  width: 96px;
+  height: 96px;
+  border-radius: 15px;
+  object-fit: cover;
+}
+
+.statusIndicator {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  right: 14px;
+  top: 9px;
+  background: #FBFBFB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statusDot {
+  width: 9px;
+  height: 9px;
+  background: #38CD3E;
+  border-radius: 50%;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.subTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8A8A89;
+}
+
+.name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 24px;
+  color: #191A15;
+  margin: 0;
+}
+
+.statsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #191A15;
+}
+
+.priceValue {
+  color: #38CD3E;
+}
+
+.starIcon {
+  width: 16px;
+  height: 16px;
+  color: #FFC531;
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background-color: rgba(25, 26, 21, 0.2);
+}
+
+.favoriteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heartIcon {
+  width: 26px;
+  height: 26px;
+  stroke: currentColor; /* Use currentColor to inherit from parent, allowing fill to take precedence */
+  stroke-width: 2;
+  fill: none;
+}
+
+.isFavorite .heartIcon {
+  fill: #fc832c;
+  stroke: #fc832c;
+}
+
+.tagsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin-bottom: 24px;
+}
+
+.tag {
+  padding: 8px 16px;
+  background: #F3F3F3;
+  border-radius: 24px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8A8A89;
+}
+
+.tagValue {
+  color: #191A15;
+}
+
+.description {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(25, 26, 21, 0.5);
+  margin-bottom: 14px;
+  max-width: 992px;
+}
+
+.readMoreBtn {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration-line: underline;
+  color: #191A15;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.expandedContent {
+  margin-top: 48px;
+}
+
+.reviewsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.reviewItem {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reviewerAvatar {
+  width: 44px;
+  height: 44px;
+  background: rgba(52, 112, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #54be59;
+}
+
+.reviewerName {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #191A15;
+  margin: 0 0 4px 0;
+}
+
+.reviewRating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #191A15;
+}
+
+.starIconSmall {
+  width: 14px;
+  height: 14px;
+  color: #FFC531;
+}
+
+.reviewComment {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(25, 26, 21, 0.5);
+  margin: 0;
+}
+
+.appointmentBtn {
+  padding: 14px 32px;
+  background: #54be59;
+  border-radius: 30px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.appointmentBtn:hover {
+  background: #36a33e;
 }

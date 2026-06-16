@@ -6,7 +6,7 @@
 
 :root {
   --text: #191A15;
-  --bg: #FBFBFB;
+  --bg: rgba(241,241,241,1);
   --accent: #54BE96;
   --accent-light: rgba(84, 190, 150, 0.2);
   --accent-heavy: rgba(54, 163, 121, 1);

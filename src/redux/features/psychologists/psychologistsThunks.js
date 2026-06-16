@@ -4,8 +4,8 @@ import { getPsychologists } from "../../../services/firebase/api";
 export const fetchPsychologists = () => async (dispatch) => {
   try {
     dispatch(fetchStart());
-    const items = await getPsychologists();
-    dispatch(fetchSuccess(items));
+    const result = await getPsychologists();
+    dispatch(fetchSuccess(result));
   } catch (e) {
     dispatch(fetchFailure(e.message));
   }
